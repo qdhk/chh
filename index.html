@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>2016茶话会</title>
+	<meta name="author" content="Alvaro Trigo Lopez" />
+	<meta name="description" content="fullPage plugin by Alvaro Trigo. Pure javascript version of full screen slider." />
+	<meta name="keywords"  content="fullpage,jquery,alvaro,trigo,plugin,fullscren,screen,full,iphone5,apple,pure,javascript,slider,hijacking" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="css/javascript.fullPage.css" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript">
+	var test = ["恭喜你，本次比赛免受惩罚！",
+				"让你座位右手边第二个人来替你受罚吧！",
+				"让你座位左边第一个人来替你受罚吧",
+				"学模特走时装秀",
+				"选一个男生 一边捶他的胸一边说：你好讨厌哦",
+				"真心话1.你的初恋是几岁?2.你想对你的初恋说什么？",
+				"对窗外大喊：我好寂寞啊",
+				"哭笑不得， 先哭5秒，再大笑5秒",
+				"难为你了，深蹲10个！",
+				"原地速度转圈10转！转完之后，你可以下去了！",
+				"背个人，来个蹲下起立吧",
+				"头顶一个气球，30秒不准掉，掉了的话在选个",
+				"抱一个气球或人，边吻边说：我爱你，我想的你好痛苦啊！",
+				"装作裤裆下有扫把,在附近跳 并叫出: 架架架",
+				"来一个回眸一笑百媚生，定格5秒",
+				"摆pose",
+				"戴上指定道具供大家拍照",
+				"表演：闻自己的袜子",
+				"用忧郁的眼神看着大家说：对不起我是人妖",
+				"含一口水并对大家说：我今天很开心",
+				"像青蛙那样跳两步，嘴里喊“呱呱。。。”",
+				"邀请在场的一个人深情对望15秒，不许眨眼不许笑",
+				"给大家示范下洗澡时香皂是怎么搓的，至少搓完上半身",
+				"一手拿个气球，放胸前，让别人扎破",
+				
+				"大声说一遍：我是猪，我是猪，我真的是猪！"
+				];
+
+	</script>
+	<style>
+		/* Reset CSS
+		 * --------------------------------------- */
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+		form,fieldset,input,textarea,p,blockquote,th,td {
+		    padding: 0;
+		    margin: 0;
+		}
+		a{
+			text-decoration:none;
+		}
+		table {
+		    border-spacing: 0;
+		}
+		fieldset,img {
+		    border: 0;
+		}
+		address,caption,cite,code,dfn,em,strong,th,var {
+		    font-weight: normal;
+		    font-style: normal;
+		}
+		strong{
+			font-weight: bold;
+		}
+		ol,ul {
+		    list-style: none;
+		    margin:0;
+		    padding:0;
+		}
+		caption,th {
+		    text-align: left;
+
+		}
+		h1,h2,h3,h4,h5,h6 {
+		    font-weight: normal;
+		    font-size: 100%;
+		    margin:0;
+		    padding:0;
+		    color:#444;
+		}
+		q:before,q:after {
+		    content:'';
+		}
+		abbr,acronym { border: 0;
+		}
+		/* Custom CSS
+		 * --------------------------------------- */
+		.content{
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			text-align: center;
+		}
+
+		/* Section 1
+		 * --------------------------------------- */
+		/*#section0{
+			background-color: #BFDA00;
+		}*/
+		#section0{
+			background: -webkit-gradient(linear, top left, bottom left, from(#4bbfc3), to(#7baabe));
+			background: -webkit-linear-gradient(#4BBFC3, #7BAABE);
+			background: linear-gradient(#4BBFC3,#7BAABE);
+		}
+		/*#section0 h1{
+			color: #444;
+		}
+		#section0 p{
+			color: #333;
+			opacity: 0.4;
+		}*/
+		
+
+		
+
+		/* Section 2
+		 * --------------------------------------- */
+		/*#section1{
+			background-color: #2EBE21;
+		}*/
+		#section1{
+			background-color: #000;
+		}
+		/*#section1 h1{
+			color: #fff;
+		}
+		#section1 p{
+			opacity: 0.8;
+		}*/
+
+
+		/* Section 3
+		 * --------------------------------------- */
+		/*#section2{
+			background-color: #2C3E50;
+		}*/
+		#section2{
+			background: -webkit-gradient(linear, top left, bottom left, from(#969ac6), to(#636F8F));
+			background: -webkit-linear-gradient(#969AC6, #636F8F);
+			background: linear-gradient(#969AC6,#636F8F);
+		}
+		.jiemutitle {
+			position: relative;
+			top: 20%;
+			transform: translateY(-50%);
+			text-align: center;
+		}
+		.slidetitle {
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			text-align: center;
+		}
+		.jiemucontent {
+			position: relative;
+			top: 56%;
+			width:600px;
+			margin:0 auto;
+			text-align: right;
+			
+		}
+		.slidecontent{
+			position: relative;
+			
+			width:600px;
+			margin:200px auto;
+			text-align: right;
+		}
+		.myvideo{
+			position: fixed;
+			width:600px;
+			height: 450px;
+			left: 31%;
+			visibility: hidden;
+			top:1%;
+			
+			
+		}
+		.slidetitle h1{
+			color: #F2F2F2;
+			font-size: 5em;
+		}
+		.slidecontent p{
+			color: #F2F2F2;
+			opacity: 0.6;
+			font-size: 3em;
+		}
+		.effect22 span,.effect82 span{
+			color: #F2F2F2;
+			opacity: 0.6;
+			font-size: 2em;
+		}
+		#effect span{
+			color: #F2F2F2;
+			font-size: 6em;
+
+		}
+		#effect1{
+			visibility: hidden;
+		}
+		#effect1 span{
+
+			color: #F2F2F2;
+			opacity: 0.6;
+			font-size: 3em;
+		}
+		#slide1{
+			background: #DE564B;
+			
+		}
+		
+		/*#slide1{
+			background: -webkit-gradient(linear, top left, bottom left, from(#7baabe), to(#969ac6));
+			background: -webkit-linear-gradient(#7BAABE, #969AC6);
+			background: linear-gradient(#7BAABE,#969AC6);
+		}
+		#slide2{
+			background: -webkit-gradient(linear, top left, bottom left, from(#92a1ca), to(#76c2bd));
+			background: -webkit-linear-gradient(#92a1ca, #76c2bd);
+			background: linear-gradient(#92a1ca,#76c2bd);
+		}*/
+		#slide1{
+			background: -webkit-gradient(linear, top left, bottom left, from(#DE564B), to(#c9826a));
+			background: -webkit-linear-gradient(#DE564B, #c9826a);
+			background: linear-gradient(#DE564B,#c9826a);
+		}
+		#slide2{
+			background: -webkit-gradient(linear, top left, bottom left, from(#d24943), to(#c78873));
+			background: -webkit-linear-gradient(#d24943, #c78873);
+			background: linear-gradient(#d24943,#c78873);
+		}
+		#slide3{
+			background: -webkit-gradient(linear, top left, bottom left, from(#90A4AA), to(#B0BEC5));
+			background: -webkit-linear-gradient(#90A4AA, #B0BEC5);
+			background: linear-gradient(#90A4AA,#B0BEC5);
+		}
+		#slide4{
+			background: -webkit-gradient(linear, top left, bottom left, from(#00BCD4), to(#26C6DA));
+			background: -webkit-linear-gradient(#00BCD4, #26C6DA);
+			background: linear-gradient(#00BCD4,#26C6DA);
+		}
+		
+		#slide5{
+			background: -webkit-gradient(linear, top left, bottom left, from(#F06292), to(#EC407A));
+			background: -webkit-linear-gradient(#F06292, #EC407A);
+			background: linear-gradient(#F06292,#EC407A);
+		}
+		#slide6{
+			background: -webkit-gradient(linear, top left, bottom left, from(#92a1ca), to(#76c2bd));
+			background: -webkit-linear-gradient(#92a1ca, #76c2bd);
+			background: linear-gradient(#92a1ca,#76c2bd);
+		}
+		#slide7{
+			background: -webkit-gradient(linear, top left, bottom left, from(#90A4AA), to(#B0BEC5));
+			background: -webkit-linear-gradient(#90A4AA, #B0BEC5);
+			background: linear-gradient(#90A4AA,#B0BEC5);
+		}
+		#slide8{
+			background: -webkit-gradient(linear, top left, bottom left, from(#92a1ca), to(#76c2bd));
+			background: -webkit-linear-gradient(#92a1ca, #76c2bd);
+			background: linear-gradient(#92a1ca,#76c2bd);
+		}
+		#slide9{
+			background: -webkit-gradient(linear, top left, bottom left, from(#DE564B), to(#c9826a));
+			background: -webkit-linear-gradient(#DE564B, #c9826a);
+			background: linear-gradient(#DE564B,#c9826a);
+		}
+		#slide10{
+			background: -webkit-gradient(linear, top left, bottom left, from(#d24943), to(#c78873));
+			background: -webkit-linear-gradient(#d24943, #c78873);
+			background: linear-gradient(#d24943,#c78873);
+		}
+		.img_yd{
+			position: fixed;
+			right: 10%;
+			top:50%;
+		}
+
+		
+		
+		.arrow {
+		  position: absolute;
+		  left: 50%;
+		  top: 95%;
+		  -webkit-transform-origin: 50% 95%;
+		          transform-origin: 50% 95%;
+		  -webkit-transform: translate3d(-50%, -95%, 0);
+		          transform: translate3d(-50%, -95%, 0);
+		}
+
+		.arrow-1 {
+		  -webkit-animation: arrow-movement 2s ease-in-out infinite;
+		          animation: arrow-movement 2s ease-in-out infinite;
+		}
+
+		.arrow-2 {
+		  -webkit-animation: arrow-movement 2s 1s ease-in-out infinite;
+		          animation: arrow-movement 2s 1s ease-in-out infinite;
+		}
+
+		.arrow:before,
+		.arrow:after {
+		  background: #fff;
+		  content: '';
+		  display: block;
+		  height: 3px;
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 30px;
+		}
+
+		.arrow:before {
+		  -webkit-transform: rotate(45deg) translateX(-23%);
+		          transform: rotate(45deg) translateX(-23%);
+		          -
+		  -webkit-transform-origin: top left;
+		          transform-origin: top left;
+		}
+
+		.arrow:after {
+		  -webkit-transform: rotate(-45deg) translateX(23%);
+		          transform: rotate(-45deg) translateX(23%);
+		  -webkit-transform-origin: top right;
+		          transform-origin: top right;
+		}
+
+		@-webkit-keyframes arrow-movement {
+		  0% {
+		    opacity: 0;
+		    top: 90%;
+		  }
+		  70% {
+		    opacity: 1;
+		  }
+		  100% {
+		    opacity: 0;
+		  }
+		}
+
+		@keyframes arrow-movement {
+		  0% {
+		    opacity: 0;
+		    top: 90%;
+		  }
+		  70% {
+		    opacity: 1;
+		  }
+		  100% {
+		    opacity: 0;
+		  }
+		}
+		
+
+		.effect11 span,.effect21 span,.effect31 span,.effect41 span,.effect51 span,
+		.effect61 span,.effect71 span,.effect81 span,.effect91 span,.effect101 span{
+			color: #F2F2F2;
+			
+		}
+		.effect12 span,.effect22 span,.effect32 span,.effect42 span,.effect52 span,
+		.effect62 span,.effect72 span,.effect82 span,.effect92 span,.effect102 span{
+			color: #F2F2F2;
+			
+		}
+		.effect11,.effect21,.effect31,.effect41,.effect51,.effect61,.effect12,.effect22,.effect32,.effect42,
+		.effect52,.effect62,.effect71,.effect81,.effect91,.effect101,.effect72,.effect82,.effect92,.effect102{
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+
+
+<div id="fullpage">
+	<div class="section" id="section2">
+			<div class="jiemutitle">
+				<h1 id="effect">2016元旦茶话会</h1>
+				
+			</div>
+			<div class="jiemucontent">
+				
+				<p  id="effect1">喜迎元旦</p>
+			</div>
+			<img class='img_yd' src='images/y1.gif'/>
+			<div class="arrow arrow-1"></div>
+			<div class="arrow arrow-2"></div>
+	</div>
+	
+	
+		
+	
+	<div class="section" id="section1">
+		<!-- <canvas id = 'canv'></canvas> -->
+		<div class="slide" id="slide1">
+			<div class="slidetitle">
+				<h1 class="effect11">
+					歌曲：情歌王 
+				</h1>
+				<div class="slidecontent">
+				
+					<p class="effect12">周永博</p>
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide2">
+			<div class="slidetitle">
+				<h1 class="effect21">
+					相声：论雾霾
+				</h1 >
+				<div class="slidecontent">
+					<div class="effect22">
+						<p >赵亚东  王晨旭</p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide3">
+			<div class="slidetitle">
+				<h1 class="effect31">
+					游戏：瞎子指人
+				</h1>
+				<div class="slidecontent">
+					<div class="effect32">
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide4">
+			<div class="slidetitle">
+				<h1 class="effect41">
+					游戏：萝卜蹲
+				</h1>
+				<div class="slidecontent">
+					<div class="effect42">
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide5">
+			<div class="slidetitle" >
+				<h1 class="effect51" >
+					歌曲：灰姑娘
+				</h1>
+				<div class="slidecontent" >
+					
+					<p class="effect52">王志男</p>
+				</div>
+				<div class="myvideo">
+						<video width="600" height="450" src="2.mp4" controls="controls">
+						</video>
+						<!-- <video>
+						    <source data-src="2.mp4" type="video/mp4" />
+						</video> -->
+					</div>
+			</div>
+		</div>
+		<div class="slide" id="slide6">
+			<div class="slidetitle">
+				<h1 class="effect61">
+					歌曲：离开的理由
+				</h1>
+				<div class="slidecontent">
+				
+					<p class="effect62">赵乙桥</p>
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide7">
+			<div class="slidetitle">
+				<h1 class="effect71">
+					游戏：套圈
+				</h1>
+				<div class="slidecontent">
+					<div class="effect72">
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide8">
+			<div class="slidetitle">
+				<h1 class="effect81">
+					小品:竞选学生会干部
+				</h1 >
+				<div class="slidecontent">
+					<div class="effect82">
+						<p >李然 吕进 胡恒 钱雅伦</p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide9">
+			<div class="slidetitle">
+				<h1 class="effect91">
+					歌曲：他来听我的演唱会 
+				</h1>
+				<div class="slidecontent">
+				
+					<p class="effect92">毕营帅</p>
+				</div>
+			</div>
+		</div>
+		<div class="slide" id="slide10">
+			<div class="slidetitle">
+				<h1 class="effect101">
+					游戏：金鸡独立
+				</h1>
+				<div class="slidecontent">
+					<div class="effect102">
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="section" id="section1"></div>
+	<div class="section " id="section0">
+		<div class="content">
+			
+			<div id="chengfa" class="chengfa">点击"开始"，开始随机惩罚</div>
+			<div class="cfav">
+    		<a class="count count_a">开始倒计时...</a><a class="start">启动</a><a class="over">停止</a>
+			</div> 
+		</div>
+	</div>	
+	
+	
+</div>
+
+<script type="text/javascript" src="js/javascript.fullPage.js"></script>
+<script type="text/javascript">
+	// fullpage.initialize('#fullpage', {
+	// 	anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+	// 	menu: '#menu',
+	// 	css3:true
+		
+	// });
+
+</script>
+<script src="js/jquery.easing.1.3.js"></script> 
+<script src="js/core_plugin.js"></script> 
+<script src="js/custom_effect.js"></script>
+</body>
+</html>
